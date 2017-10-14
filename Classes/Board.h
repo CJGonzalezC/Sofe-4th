@@ -35,26 +35,32 @@ public:
     int actualNumber = 1;
     
     Sprite* playerSprite;
-    
-    vector<SceneConstructors> sceneConstructors =
-    {
-        JumpingHippo::createScene,
-        Chips::createScene,
-        Drow::createScene,
-        Gluttony::createScene,
-        Stacking::createScene,
-        Counting::createScene
-    };
-    vector<string> sceneNames =
-    {
-        "Jumping Hippo",
-        "Chips",
-        "Drow",
-        "Gluttony",
-        "Stacking",
-        "Counting"
-    };
-    
+	Sprite* playerjumpSprite;
+
+	Sprite* dice1;
+
+	vector<SceneConstructors> sceneConstructors =
+	{
+		
+		Chips::createScene,
+		Drow::createScene
+	};
+	vector<string> sceneNames =
+	{
+		
+		"Chips",
+		"Drow"
+		
+	}; 
+
+	vector<string> scenePunctuation =
+	{
+
+		"P.Maxima: 20",
+		"P.Maxima: ilimited"
+
+	};
+	
     void stopDiceAndMove();
     
     Vec2 firstTilePosition;

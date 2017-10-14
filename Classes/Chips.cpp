@@ -44,34 +44,52 @@ void Chips::initComponents()
     
 }
 
+//void Chips::initClickListener()
+//{
+//    auto mouseListener = EventListenerTouchOneByOne::create();
+//    
+//    mouseListener->onTouchBegan = [=](Touch* touch, Event* event){
+//        for(int i = 0; i < chips.size(); i++)
+//        {
+//            if(isTouchingChip(chips.at(i), touch->getLocation())){
+//                chips.at(i)->runAction(RemoveSelf::create(true));
+//            }
+//        }
+//        return true;
+//    };
+//    mouseListener->onTouchMoved = [=](Touch* touch, Event* event){};
+//    
+//    mouseListener->onTouchEnded = [=](Touch* touch, Event* event){};
+//    
+//    _eventDispatcher->addEventListenerWithSceneGraphPriority(mouseListener, this);
+//}
 void Chips::initClickListener()
 {
-    auto mouseListener = EventListenerTouchOneByOne::create();
-    
-    mouseListener->onTouchBegan = [=](Touch* touch, Event* event){
-        for(int i = 0; i < chips.size(); i++)
-        {
-            if(isTouchingChip(chips.at(i), touch->getLocation())){
-                chips.at(i)->runAction(RemoveSelf::create(true));
-            }
-        }
-        return true;
-    };
-    mouseListener->onTouchMoved = [=](Touch* touch, Event* event){};
-    
-    mouseListener->onTouchEnded = [=](Touch* touch, Event* event){};
-    
-    _eventDispatcher->addEventListenerWithSceneGraphPriority(mouseListener, this);
+	auto mouseListener = EventListenerTouchOneByOne::create();
+	mouseListener->onTouchBegan = [=](Touch* touch, Event* event) {
+		for (int i = 0; i < chips.size(); i++)
+		{
+			if (isTouchingChip(chips.at(i), touch->getLocation())) {
+				chips.at(i)->runAction(RemoveSelf::create(true));
+			}
+		}
+		return true;
+	};
+	mouseListener->onTouchMoved = [=](Touch* touch, Event* event) {};
+
+	mouseListener->onTouchEnded = [=](Touch* touch, Event* event) {};
+
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(mouseListener, this);
 }
 
 bool Chips::isTouchingChip(Sprite* chip, Vec2 touchPosition)
 {
-    float xSquared = chip->getPosition().x - touchPosition.x;
+    /*float xSquared = chip->getPosition().x - touchPosition.x;
     xSquared *= xSquared;
     
     float ySquared = chip->getPosition().y - touchPosition.y;
-    ySquared *= ySquared;
+    ySquared *= ySquared;*/
 
     float radiusSquared = (chip->getContentSize().width/ 2) * (chip->getContentSize().width / 2);
-    return xSquared + ySquared < radiusSquared;
+    return radiusSquared;
 }

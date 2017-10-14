@@ -41,16 +41,16 @@ void Drow::initComponents()
 
 void Drow::initAnimation()
 {
-    barSprite->setRotation(-45);
+    barSprite->setRotation(45);
     
-    auto rightAnim = RotateBy::create(1, 90);
-    auto leftAnim = RotateBy::create(1, -90);
+    auto rightAnim = RotateBy::create(1, -90);
+    auto leftAnim = RotateBy::create(1, 90);
     
     auto rightEase = EaseSineInOut::create(rightAnim);
     auto leftEase = EaseSineInOut::create(leftAnim);
     
     auto sequence = Sequence::create(rightEase, leftEase, NULL);
-    auto repeatSequence = Repeat::create(sequence, 5);
+    auto repeatSequence = RepeatForever::create(sequence);
     
     barSprite->runAction(repeatSequence);
 }
